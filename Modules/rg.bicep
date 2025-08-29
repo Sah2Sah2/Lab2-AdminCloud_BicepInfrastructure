@@ -1,1 +1,3 @@
 // =============== rg.bicep =============
+
+targetScope = 'subscription'

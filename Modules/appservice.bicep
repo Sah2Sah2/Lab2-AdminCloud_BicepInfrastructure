@@ -1,1 +1,3 @@
 // =============== appservice.bicep =============
+
+targetScope = 'resourceGroup'

@@ -1,6 +1,6 @@
 // =============== storage.bicep =============
 
-
+targetScope = 'resourceGroup'
 
 
 
