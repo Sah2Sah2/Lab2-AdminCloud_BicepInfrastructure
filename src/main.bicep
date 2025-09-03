@@ -41,3 +41,9 @@ param costCenter string
 // To do: create RG
 
 // To do: call the modules
+
+  // Storage 
+
+  // App Service 
+
+  // Autoscale (VG)
