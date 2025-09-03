@@ -28,7 +28,7 @@ param namePrefix string
 param appServicePlanSku string = 'B1'
 
 // Environments 
-@description('Deployment enviroment')
+@description('Deployment environment')
 @allowed(['dev','test','prod'])
 param environment string = 'dev'
 
@@ -105,10 +105,10 @@ module Autoscale './modules/autoscale.bicep' = if (environment == 'prod') {
   name: 'autoscale-${environment}'
   params: {
     autoscaleName: autoscaleName
-    minInstanceCount : minInstanceCount
+    minInstanceCount: minInstanceCount
     maxInstanceCount: maxInstanceCount
-    defaultInstanceCount : defaultInstanceCount
-    targetResourceId : AppService.outputs.appServicePlanId
+    defaultInstanceCount: defaultInstanceCount
+    targetResourceId: AppService.outputs.appServicePlanId
     owner: owner 
     environment: environment
     costCenter: costCenter
