@@ -75,18 +75,46 @@ var autoscaleName = '${namePrefix}-autoscale-${environment}'
 
 // Storage 
 module StorageAgcount './modules/storage.bicep' = {
-
+  name: 'app-${environment}'
+  params: {
+    storageName: storageAccountName
+    location: location
+    owner: owner
+    enviroment: environment
+    costCenter: costCenter
+  }
 }
 
 // App Service 
 module AppService './modules/appservice.bicep' = {
-
+  name: 'app-${environment}'
+  params: {
+    appServiceName: webAppName
+    appServicePlanName: appServicePlanName 
+    location: location 
+    sku: appServicePlanSku
+    httpsOnly: httpsOnly
+    owner: owner
+    environment: environment
+    costCenter: costCenter
+  }
 }
 
 // Autoscale (VG)
-module Autoscale './modules/autoscale.bicep' = {
-
+module Autoscale './modules/autoscale.bicep' = if (environment == 'prod') {
+  name: 'autoscale-${environment}'
+  params: {
+    autoscaleName: autoscaleName
+    minInstaceCount : minInstanceCount
+    maxInstanceCount: maxInstanceCount
+    defaultInstanceCount : defaultInstanceCount
+    targetResourceId : AppService.outputs.appServicePlanId
+    owner: owner 
+    enviroment: environment
+    costCenter: costCenter
+  }
 }
 
 
 //--------------------OUTPUTS-----------------
+output webAppUrl string = 'hhtps://${webAppName}.azurewebsites.net'
