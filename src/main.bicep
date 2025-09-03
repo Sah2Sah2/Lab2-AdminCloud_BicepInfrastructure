@@ -1,10 +1,12 @@
-targetScope = 'subscription' // Subscription to create the RG 
+targetScope = 'resourceGroup' // Under my personal RG
 
 metadata description = 'Main Bicep file for deploying Azure infrastructure'
 
+// ------------------------------PARAMETERS--------------------------------------------
+
 // Resource group 
 @description('Name of the RG')
-param rgName
+param rgName string
 
 // Location for the RG
 @description('Azure region for all the resources')
@@ -38,12 +40,35 @@ param owner string
 @description('Cost center tag')
 param costCenter string 
 
-// To do: create RG
+// Https only
+param httpsOnly bool
+
+// -------AUTOSCALE PARAMETERS---------
+
+@description('Minimum instance count for autoscale')
+param minInstanceCount int = environment == 'prod' ? 2 : 1 
+
+@description('Maximum instance count for autoscale')
+param maxInstanceCount int = environment == 'prod' ? 5 : 2 
+
+@description('Deafult initial instance count')
+param defaultInstanceCount int = environment == 'prod'? 2 : 1 
+
+// --------------------To do: Resources/Modules------------------------------------
 
 // To do: call the modules
 
-  // Storage 
+// Storage 
+module StorageAgcount './modules/storage.bicep' = {
 
-  // App Service 
+}
 
-  // Autoscale (VG)
+// App Service 
+module AppService './modules/appservice.bicep' = {
+
+}
+
+// Autoscale (VG)
+module Autoscale './modules/autoscale.bicep' = {
+
+}
