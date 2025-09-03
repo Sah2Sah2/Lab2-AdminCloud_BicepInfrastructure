@@ -15,7 +15,7 @@ param location string
 // Storage Account
 @minLength(3)
 @maxLength(11)
-@description('Prefix for gloabblly unique storage account names')
+@description('Prefix for globally unique storage account names')
 param storagePrefix string 
 
 // Prefix 
@@ -51,7 +51,7 @@ param minInstanceCount int = environment == 'prod' ? 2 : 1
 @description('Maximum instance count for autoscale')
 param maxInstanceCount int = environment == 'prod' ? 5 : 2 
 
-@description('Deafult initial instance count')
+@description('Default initial instance count')
 param defaultInstanceCount int = environment == 'prod'? 2 : 1 
 
 //---------NAMING VARIABLES--------------
