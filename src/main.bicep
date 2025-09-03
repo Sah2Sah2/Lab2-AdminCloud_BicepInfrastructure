@@ -75,12 +75,12 @@ var autoscaleName = '${namePrefix}-autoscale-${environment}'
 
 // Storage 
 module StorageAgcount './modules/storage.bicep' = {
-  name: 'app-${environment}'
+  name: 'storage-${environment}'
   params: {
     storageName: storageAccountName
     location: location
     owner: owner
-    enviroment: environment
+    environment: environment
     costCenter: costCenter
   }
 }
@@ -90,7 +90,7 @@ module AppService './modules/appservice.bicep' = {
   name: 'app-${environment}'
   params: {
     appServiceName: webAppName
-    appServicePlanName: appServicePlanName 
+    appServicePlanName: appServicePlanResourceName 
     location: location 
     sku: appServicePlanSku
     httpsOnly: httpsOnly
@@ -105,16 +105,16 @@ module Autoscale './modules/autoscale.bicep' = if (environment == 'prod') {
   name: 'autoscale-${environment}'
   params: {
     autoscaleName: autoscaleName
-    minInstaceCount : minInstanceCount
+    minInstanceCount : minInstanceCount
     maxInstanceCount: maxInstanceCount
     defaultInstanceCount : defaultInstanceCount
     targetResourceId : AppService.outputs.appServicePlanId
     owner: owner 
-    enviroment: environment
+    environment: environment
     costCenter: costCenter
   }
 }
 
 
 //--------------------OUTPUTS-----------------
-output webAppUrl string = 'hhtps://${webAppName}.azurewebsites.net'
+output webAppUrl string = 'https://${webAppName}.azurewebsites.net'
