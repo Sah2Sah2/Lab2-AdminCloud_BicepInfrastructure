@@ -54,6 +54,21 @@ param maxInstanceCount int = environment == 'prod' ? 5 : 2
 @description('Deafult initial instance count')
 param defaultInstanceCount int = environment == 'prod'? 2 : 1 
 
+//---------NAMING VARIABLES--------------
+
+// App Service Plan 
+var appServicePlanResourceName = '${namePrefix}-app-${environment}-${uniqueString(resourceGroup().id)}'
+
+// Storage account 
+var storageAccountName = '${storagePrefix}-sa-${environment}-${uniqueString(resourceGroup().id)}'
+
+// Web App
+var webAppName = '${namePrefix}-web-${environment}-${uniqueString(resourceGroup().id)}'
+
+// Autoscale 
+var autoscaleName = '${namePrefix}-autoscale-${environment}'
+
+
 // --------------------To do: Resources/Modules------------------------------------
 
 // To do: call the modules
@@ -72,3 +87,6 @@ module AppService './modules/appservice.bicep' = {
 module Autoscale './modules/autoscale.bicep' = {
 
 }
+
+
+//--------------------OUTPUTS-----------------
