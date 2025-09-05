@@ -133,4 +133,10 @@ module Autoscale './modules/autoscale.bicep' = if (environment == 'prod') {
 
 
 //--------------------OUTPUTS-----------------
-output webAppUrl string = 'https://${webAppName}.azurewebsites.net'
+
+output webAppUrl string = AppService.outputs.webAppUrl
+output appServicePlanId string = AppService.outputs.appServicePlanId
+
+output storageAccoutnId string = StorageAccount.outputs.storageAccountId
+
+output autoscaleId string = Autoscale.outputs.autoscaleId
