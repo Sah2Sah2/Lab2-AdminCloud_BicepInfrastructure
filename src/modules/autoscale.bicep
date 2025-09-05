@@ -50,3 +50,8 @@ resource autoscale 'Microsoft.Insights/autoscalesettings@2022-10-01' = {
     costCenter: costCenter
   }
 }
+
+// Outputs 
+
+output autoscaleId string = autoscale.id
+output autoscaleName string = autoscale.name
