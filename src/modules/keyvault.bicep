@@ -39,7 +39,7 @@ resource kv 'Microsoft.KeyVault/vaults@2024-11-01' = {
   }
   tags: {
     owner: owner
-    enviroment: environment
+    environment: environment
     costCenter: costCenter
   }
 }
