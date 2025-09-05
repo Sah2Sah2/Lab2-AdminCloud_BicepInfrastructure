@@ -3,12 +3,15 @@
   "contentVersion": "1.0.0.0",
   
   "parameters": {
-    "baseName": { "value": "myapp" },
     "environment": { "value": "dev" },
     "location": { "value": "swedencentral" },
-    "skuName": { "value": "B1" },
+    "storagePrefix": {"value": "devstgsara"},
+    "namePrefix": {"value": "devapp"},
+    "skuName": { "value": "Standard_LRS" },
+    "storageKind": {"value": "StorageV2"},
     "skuCapacity": { "value": 1 },
-    "owner": { "value": "" },
-    "costCenter": { "value": "" }
+    "owner": { "value": "Sara Battistella" },
+    "costCenter": { "value": "DEV-001" },
+    "httpsOnly": { "value": true}
   }
 }
