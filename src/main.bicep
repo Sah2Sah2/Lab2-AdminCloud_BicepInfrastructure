@@ -74,7 +74,7 @@ var autoscaleName = '${namePrefix}-autoscale-${environment}'
 // To do: call the modules
 
 // Storage 
-module StorageAgcount './modules/storage.bicep' = {
+module StorageAccount './modules/storage.bicep' = {
   name: 'storage-${environment}'
   params: {
     storageName: storageAccountName
