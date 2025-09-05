@@ -62,6 +62,9 @@ param httpsOnly bool
 @description('Secret value for Key Vault')
 param secretValueFromCLI string 
 
+@description('Name of the secret in Key Vault')
+param secretName string = 'MySecret'
+
 // -------AUTOSCALE PARAMETERS---------
 
 @description('Minimum instance count for autoscale')
@@ -116,7 +119,7 @@ module KeyVault './modules/keyvault.bicep' = {
     owner: owner 
     environment: environment
     costCenter: costCenter
-    secretName: 'MySecret'
+    secretName: secretName
     secretValue: secretValueFromCLI
   }
 }
