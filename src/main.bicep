@@ -139,4 +139,3 @@ output appServicePlanId string = AppService.outputs.appServicePlanId
 
 output storageAccoutnId string = StorageAccount.outputs.storageAccountId
 
-output autoscaleId string = Autoscale.outputs.autoscaleId
