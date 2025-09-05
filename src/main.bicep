@@ -4,9 +4,9 @@ metadata description = 'Main Bicep file for deploying Azure infrastructure'
 
 // ------------------------------PARAMETERS--------------------------------------------
 
-// Resource group 
+/*// Resource group 
 @description('Name of the RG')
-param rgName string
+param rgName string*/
 
 // Location for the RG
 @description('Azure region for all the resources')
