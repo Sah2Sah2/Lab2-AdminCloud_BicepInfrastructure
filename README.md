@@ -7,6 +7,16 @@
 
 This project.... 
 
+The infrasture includes: 
+- Resource Group (given from the school)
+- Storage Account per environment (dev, test, prod)
+- App Service Plan + Web App per environment 
+-Key Vault for storing secrets 
+- Autosclae sertings (only for prod)
+- Proper tagging (owner`, `environemnt`, `costCenter`)
+- Parameters to have a modular and reusable deployment
+
+
 ## Table of contents
 
 ## Prerequisites 
@@ -43,24 +53,55 @@ This project....
 Deploy each environment separately (dev, test, prod) on your personal Resouece Group 
 
 Dev
+
+```bash
+az deployment group create \
+  --resource-group RG-yourname \
+  --template-file src/main.bicep \
+  --parameters @parameters/dev.json \
+  --parameters secretValueFromCLI="secretvalue"
+```
+
 Test
+
+```bash
+az deployment group create \
+  --resource-group RG-yourname \
+  --template-file src/main.bicep \
+  --parameters @parameters/test.json \
+  --parameters secretValueFromCLI="secretvalue1"
+```
+
 Prod
 
+```bash
+az deployment group create \
+  --resource-group RG-yourname \
+  --template-file src/main.bicep \
+  --parameters @parameters/prod.json \
+  --parameters secretValueFromCLI="secretvalue2"
+```
 
 ## Notes 
-- secretValueFromCli
-- All resources are tagged with owner, environemnt, costCenter
+- `secretValueFromCli` to have a secret Key Value not exposed in JSON file
+- All resources are tagged with `owner`, `environemnt`, and `costCenter`
 - Autoscale is enable only in production
 
 ## Outputs 
 After deployment, the following are available 
--
--
--
--
+- Web App URL for each environment 
+- App Service Plan ID
+- Storage Account ID
+- Key Vault Secret URI
 
 Command to show the outputs: 
 ```bash
+az deployment group show \
+  --resource-group RG-yourname \
+  --name <deployment-name> \
+  --query properties.outputs
 ```
 
 ## Screenshots
+- Screenshots showing resources for dev, test, and prod 
+- CLI output showing Web App URLs 
