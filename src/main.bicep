@@ -82,7 +82,7 @@ param defaultInstanceCount int = environment == 'prod'? 2 : 1
 var appServicePlanResourceName = '${namePrefix}-app-${environment}-${uniqueString(resourceGroup().id)}'
 
 // Storage account 
-var storageAccountName = '${storagePrefix}-sa-${environment}-${substring(uniqueString(resourceGroup().id), 0, 6)}'
+var storageAccountName = toLower('${storagePrefix}${environment}${substring(uniqueString(resourceGroup().id), 0, 8)}')
 
 // Web App
 var webAppName = '${namePrefix}-web-${environment}-${uniqueString(resourceGroup().id)}'
