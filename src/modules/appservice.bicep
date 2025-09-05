@@ -28,7 +28,7 @@ param costCenter string
 
 // App Service Plan 
 resource appServicePlan 'Microsoft.Web/serverfarms@2024-11-01' = {
-  name: appServiceName
+  name: appServicePlanName
   location: location
   sku: {
     name: sku
