@@ -137,5 +137,5 @@ module Autoscale './modules/autoscale.bicep' = if (environment == 'prod') {
 output webAppUrl string = AppService.outputs.webAppUrl
 output appServicePlanId string = AppService.outputs.appServicePlanId
 
-output storageAccoutnId string = StorageAccount.outputs.storageAccountId
+output storageAccountId string = StorageAccount.outputs.storageAccountId
 
