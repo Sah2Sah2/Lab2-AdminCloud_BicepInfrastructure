@@ -27,6 +27,20 @@ param namePrefix string
 @allowed(['B1', 'S1'])
 param appServicePlanSku string = 'B1'
 
+// Storage SKU
+@description('Storage Account SKU')
+@allowed([
+  'Standard_LRS'
+])
+param skuName string = 'Standard_LRS'
+
+// Storage kind
+@description('Storage Account kind')
+@allowed([
+  'StorageV2'
+])
+param storageKind string = 'StorageV2'
+
 // Environments 
 @description('Deployment environment')
 @allowed(['dev','test','prod'])
@@ -79,6 +93,8 @@ module StorageAccount './modules/storage.bicep' = {
   params: {
     storageName: storageAccountName
     location: location
+    skuName: skuName 
+    kind: storageKind
     owner: owner
     environment: environment
     costCenter: costCenter
