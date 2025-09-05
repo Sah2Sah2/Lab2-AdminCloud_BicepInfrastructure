@@ -27,7 +27,37 @@ param environment string
 param costCenter string 
 
 // App Service Plan 
+resource appServicePlan 'Microsoft.Web/serverfarms@2024-11-01' = {
+  name: appServiceName
+  location: location
+  sku: {
+    name: sku
+    tier: sku == 'B1' ? 'Basic' : 'Standard'
+    size: sku
+    capacity: 1
+  }
+  tags: {
+    owner: owner 
+    environment: environment
+    costCenter: costCenter
+  }
+}
 
 // Web App
+resource webApp 'Microsoft.Web/sites@2024-11-01' = {
+  name: appServiceName
+  location: location
+  properties: {
+    serverFarmId: appServicePlan.id
+    httpsOnly: httpsOnly
+  }
+  tags: {
+    owner: owner 
+    environment: environment
+    costCenter: costCenter
+  }
+}
 
 // Output 
+output appServicePlanId string = appServicePlan.id
+output webAppUrl string = 'https://${webApp.name}.azzurewebsites.net'
