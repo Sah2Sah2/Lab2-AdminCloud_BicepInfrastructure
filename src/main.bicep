@@ -130,6 +130,8 @@ module Autoscale './modules/autoscale.bicep' = if (environment == 'prod') {
   }
 }
 
+// To do: add Key Vault module + a param in web app module 
+
 
 //--------------------OUTPUTS-----------------
 

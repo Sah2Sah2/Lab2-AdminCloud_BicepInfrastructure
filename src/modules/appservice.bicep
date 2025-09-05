@@ -26,6 +26,8 @@ param environment string
 @description('Cost center tag')
 param costCenter string 
 
+// Add param for Key Vault
+
 // App Service Plan 
 resource appServicePlan 'Microsoft.Web/serverfarms@2024-11-01' = {
   name: appServicePlanName
