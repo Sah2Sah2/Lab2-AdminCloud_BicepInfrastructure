@@ -15,14 +15,14 @@ The infrastructure includes:
 - App Service Plan + Web App per environment 
 - Key Vault for storing secrets 
 - Autoscale settings (only for prod)
-- Proper tagging (owner`, `environment`, `costCenter`)
+- Proper tagging (`owner`, `environment`, `costCenter`)
 - Parameters to have a modular and reusable deployment
 
 
 ## Table of contents
 1. [Prerequisites](#prerequisites)  
-2. [Repository Structure](#repository-structure)  
-3. [Deployment Instructions](#deployment-instructions)  
+2. [Repository structure](#repository-structure)  
+3. [Deployment instructions](#deployment-instructions)  
 4. [Notes](#notes)  
 5. [Outputs](#outputs)  
 6. [Screenshots](#screenshots)  
@@ -43,7 +43,7 @@ The infrastructure includes:
 ├── appservice.bicep               # App Service 
 ├── autoscale.bicep                # Autoscale
 ├── keyvault.bicep                 # Key Vault
-├── rg.bicep                       # RG 
+├── rg.bicep                       # Resource Group (RG)
 └── storage.bicep                  # Storage account 
  main.bicep                        # Orchestrates all modules and deploys resources
 
@@ -93,10 +93,10 @@ az deployment group create \
 ```
 
 ## Notes 
-- `secretValueFromCLI` to have a secret Key Value passed securely at deployment and not exposed in a parameter file
+- `secretValueFromCLI` is used to pass a secret value securely at deployment without exposing it in parameter files
 - All resources are tagged with `owner`, `environment`, and `costCenter`
 - Autoscale is enabled only in production
-- Resources names include the environment (`dev`, `test`, `prod`) and use `uniqueString()` where required
+- Resource names include the environment (`dev`, `test`, `prod`) and use `uniqueString()` for globally unique resources where required
 
 ## Outputs 
 After deployment, the following are available 
@@ -114,6 +114,9 @@ az deployment group show \
 ```
 
 ## Screenshots
+
+> Note: All resources were deployed temporarily to demonstrate functionality. Screenshots are provided as proof since resources were deleted immediately after deployment to avoid costs.
+
 - Screenshot of my RG showing all resources for dev, test, and prod 
 ![Dev Resources]()
 ![Test Resources]()
