@@ -3,7 +3,7 @@
 targetScope = 'resourceGroup'
 
 @description('Autoscale setting name')
-param autuscaleName string 
+param autoscaleName string 
 
 @description('Minimun instance count')
 param minInstanceCount int 
@@ -41,6 +41,7 @@ resource autoscale 'Microsoft.Insights/autoscalesettings@2022-10-01' = {
           maximum: string(maxInstanceCount)
           default: string(defaultInstanceCount)
         }
+        rules: []
       }
     ]
   }
