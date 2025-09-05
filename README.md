@@ -11,13 +11,21 @@ The infrasture includes:
 - Resource Group (given from the school)
 - Storage Account per environment (dev, test, prod)
 - App Service Plan + Web App per environment 
--Key Vault for storing secrets 
-- Autosclae sertings (only for prod)
+- Key Vault for storing secrets 
+- Autoscale settings (only for prod)
 - Proper tagging (owner`, `environemnt`, `costCenter`)
 - Parameters to have a modular and reusable deployment
 
 
 ## Table of contents
+1. [Prerequisites](#prerequisites)  
+2. [Repository Structure](#repository-structure)  
+3. [Deployment Instructions](#deployment-instructions)  
+4. [Notes](#notes)  
+5. [Outputs](#outputs)  
+6. [Screenshots](#screenshots)  
+
+---
 
 ## Prerequisites 
 - Azure subscription
@@ -43,9 +51,9 @@ The infrasture includes:
 ├── prod.json                      # Parameters for production
 └── test.json                      # Parameters for testing
 
-/.gitignore                       # Git ignore rules               
+/.gitignore                        # Git ignore rules               
 
-/README.md                        # Readme file
+/README.md                         # Readme file (this file)
 ```
 
 ## Deployment instructions 
@@ -83,9 +91,10 @@ az deployment group create \
 ```
 
 ## Notes 
-- `secretValueFromCli` to have a secret Key Value not exposed in JSON file
+- `secretValueFromCli` to have a secret Key Value passed securely at deployment and not exposed in a parameter file
 - All resources are tagged with `owner`, `environemnt`, and `costCenter`
 - Autoscale is enable only in production
+- Resources names include the environement (`dev`, `test`, `prod`) and use `uniqueString()` where required
 
 ## Outputs 
 After deployment, the following are available 
@@ -103,5 +112,9 @@ az deployment group show \
 ```
 
 ## Screenshots
-- Screenshots showing resources for dev, test, and prod 
-- CLI output showing Web App URLs 
+- Screenshot of my RG showing all resources for dev, test, and prod 
+- Schrenshot of deployment output in CLI showing Web App URLs 
+- Web App URLs for references: 
+    - Dev: 
+    - Test: 
+    - Prod: 
