@@ -5,7 +5,7 @@
   "parameters": {
     "environment": { "value": "dev" },
     "location": { "value": "swedencentral" },
-    "storagePrefix": {"value": "devstgsara"},
+    "storagePrefix": {"value": "dsb"},
     "namePrefix": {"value": "devapp"},
     "skuName": { "value": "Standard_LRS" },
     "storageKind": {"value": "StorageV2"},
