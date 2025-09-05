@@ -93,6 +93,9 @@ var autoscaleName = '${namePrefix}-autoscale-${environment}'
 // Key vault 
 var keyVaultName = '${namePrefix}-kv-${environment}'
 
+// Key Vault secret name 
+var keyVaultSecretName = '${secretName}-${uniqueString(resourceGroup().id)}'
+
 
 // --------------------Resources/Modules------------------------------------
 
@@ -119,7 +122,7 @@ module KeyVault './modules/keyvault.bicep' = {
     owner: owner 
     environment: environment
     costCenter: costCenter
-    secretName: secretName
+    secretName: keyVaultSecretName
     secretValue: secretValueFromCLI
   }
 }
