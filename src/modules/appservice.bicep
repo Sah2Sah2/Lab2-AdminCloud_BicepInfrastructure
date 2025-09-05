@@ -58,7 +58,8 @@ resource webApp 'Microsoft.Web/sites@2024-11-01' = {
   }
 }
 
-// Output 
+//--------------------OUTPUTS-----------------
+
 output appServicePlanId string = appServicePlan.id
 output webAppName string = webApp.name
 output webAppUrl string = 'https://${webApp.name}.azurewebsites.net'

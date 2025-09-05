@@ -29,5 +29,6 @@ resource rg 'Microsoft.Resources/resourceGroups@2025-04-01' = {
   }
 }
 
-// Outputs
+//--------------------OUTPUTS-----------------
+
 output rgId string = rg.id

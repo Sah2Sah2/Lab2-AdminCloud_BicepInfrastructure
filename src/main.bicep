@@ -83,9 +83,7 @@ var webAppName = '${namePrefix}-web-${environment}-${uniqueString(resourceGroup(
 var autoscaleName = '${namePrefix}-autoscale-${environment}'
 
 
-// --------------------To do: Resources/Modules------------------------------------
-
-// To do: call the modules
+// --------------------Resources/Modules------------------------------------
 
 // Storage 
 module StorageAccount './modules/storage.bicep' = {

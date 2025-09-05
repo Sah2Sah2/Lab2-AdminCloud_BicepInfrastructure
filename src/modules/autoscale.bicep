@@ -51,7 +51,7 @@ resource autoscale 'Microsoft.Insights/autoscalesettings@2022-10-01' = {
   }
 }
 
-// Outputs 
+//--------------------OUTPUTS-----------------
 
 output autoscaleId string = autoscale.id
 output autoscaleName string = autoscale.name
