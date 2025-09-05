@@ -1,11 +1,13 @@
-# Azure infrastucture deployment with Bicep 
+# Azure infrastructure deployment with Bicep 
 
 ![Bicep](https://img.shields.io/badge/Bicep-azure-blue)
 ![Azure CLI](https://img.shields.io/badge/Azure%20CLI-azure-blue)
 
 ## Project description 
 
-This project.... 
+This project creates an Azure infrastructure with Bicep across three environments: dev, test, and prod.  
+It includes Resource Groups, Storage Accounts, App Service Plans with Web Apps, a Key Vault for secrets, and Autoscale for production.  
+All resources are modularized, parameterized, use environment-specific names, have tags (`owner`, `environment`, `costCenter`), and provide outputs for Web App URLs, App Service Plan IDs, Storage Account IDs, and Key Vault secrets, fulfilling all functional and advanced requirements of the school assignment.
 
 The infrasture includes: 
 - Resource Group (given from the school)
@@ -42,7 +44,7 @@ The infrasture includes:
 ├── autoscale.bicep                # Autoscale
 ├── keyvault.bicep                 # Key Vault
 ├── rg.bicep                       # RG 
-└── storage.bicep                  # Storace account 
+└── storage.bicep                  # Storage account 
  main.bicep                        # Orchestrates all modules and deploys resources
 
 /parameters                         # Contains environment-specific parameter files
@@ -58,7 +60,7 @@ The infrasture includes:
 
 ## Deployment instructions 
 
-Deploy each environment separately (dev, test, prod) on your personal Resouece Group 
+Deploy each environment separately (dev, test, prod) on your personal Resource Group 
 
 Dev
 
@@ -91,10 +93,10 @@ az deployment group create \
 ```
 
 ## Notes 
-- `secretValueFromCli` to have a secret Key Value passed securely at deployment and not exposed in a parameter file
-- All resources are tagged with `owner`, `environemnt`, and `costCenter`
+- `secretValueFromCLI` to have a secret Key Value passed securely at deployment and not exposed in a parameter file
+- All resources are tagged with `owner`, `environment`, and `costCenter`
 - Autoscale is enable only in production
-- Resources names include the environement (`dev`, `test`, `prod`) and use `uniqueString()` where required
+- Resources names include the environment (`dev`, `test`, `prod`) and use `uniqueString()` where required
 
 ## Outputs 
 After deployment, the following are available 
@@ -117,7 +119,7 @@ az deployment group show \
 ![Test Resources]()
 ![Prod Resources]()
 
-- Schrenshot of deployment output in CLI showing Web App URLs 
+- Screenshot of deployment output in CLI showing Web App URLs 
 ![CLI Output]()
 
 - Web App URLs for references: 
