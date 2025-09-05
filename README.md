@@ -53,9 +53,29 @@ The infrastructure includes:
 ├── prod.json                      # Parameters for production
 └── test.json                      # Parameters for testing
 
+/.main.json                        # not commited
+
 /.gitignore                        # Git ignore rules               
 
 /README.md                         # Readme file (this file)
+```
+## Validate Bicep files
+
+Before deploying, you can build and lint the Bicep files to make sure everything is correct: 
+
+```bash
+# Build the Bicep file to ARM template
+az bicep build --file ./src/main.bicep
+
+# Lint the Bicep file for warnings
+az bicep lint --file ./src/main.bicep
+
+# Simulate deployment with what-if
+az deployment group what-if \
+  --resource-group RG-yourname \
+  --template-file ./src/main.bicep \
+  --parameters @parameters/dev.json \
+  --parameters secretValueFromCLI="secretvalue"
 ```
 
 ## Deployment instructions 
