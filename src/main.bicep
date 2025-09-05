@@ -117,6 +117,7 @@ module AppService './modules/appservice.bicep' = {
 }
 
 // Autoscale (VG)
+// Autoscale -> only for PROD, do not output its ID for dev/test to avoid null errors
 module Autoscale './modules/autoscale.bicep' = if (environment == 'prod') {
   name: 'autoscale-${environment}'
   params: {
