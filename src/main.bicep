@@ -83,7 +83,7 @@ var webAppName = '${namePrefix}-web-${environment}-${uniqueString(resourceGroup(
 var autoscaleName = '${namePrefix}-autoscale-${environment}'
 
 // Key vault 
-var keyVaultName = '${namePrefix}-kv-${environnmet}'
+var keyVaultName = '${namePrefix}-kv-${environment}'
 
 
 // --------------------Resources/Modules------------------------------------
