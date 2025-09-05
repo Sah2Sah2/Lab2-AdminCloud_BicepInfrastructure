@@ -17,6 +17,7 @@ param environment string
 @description('Cost center tag')
 param costCenter string 
 
+@secure()
 @description('Secret name')
 param secretName string 
 
@@ -53,4 +54,4 @@ resource secret 'Microsoft.KeyVault/vaults/secrets@2024-11-01' = {
 
 //--------------------OUTPUTS-----------------
 
-output secretUri string = secret.properties.id
+output secretUri string = secret.properties.secretUri

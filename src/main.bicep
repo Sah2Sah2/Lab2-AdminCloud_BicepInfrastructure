@@ -82,6 +82,9 @@ var webAppName = '${namePrefix}-web-${environment}-${uniqueString(resourceGroup(
 // Autoscale 
 var autoscaleName = '${namePrefix}-autoscale-${environment}'
 
+// Key vault 
+var keyVaultName = '${namePrefix}-kv-${environnmet}'
+
 
 // --------------------Resources/Modules------------------------------------
 
@@ -111,6 +114,7 @@ module AppService './modules/appservice.bicep' = {
     owner: owner
     environment: environment
     costCenter: costCenter
+    keyVaultSecretUri: KeyVault.outputs.secretUri
   }
 }
 
@@ -127,6 +131,20 @@ module Autoscale './modules/autoscale.bicep' = if (environment == 'prod') {
     owner: owner 
     environment: environment
     costCenter: costCenter
+  }
+}
+
+// Key vault (VG)
+module KeyVault './modules/keyvault.bicep' = {
+  name: 'kv-${environment}'
+  params: {
+    keyVaultName: keyVaultName
+    location: location
+    owner: owner 
+    environment: environment
+    costCenter: costCenter
+    secretName: 'MySecret'
+    secretValue: secretValueFromParamFile
   }
 }
 

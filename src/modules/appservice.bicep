@@ -26,7 +26,8 @@ param environment string
 @description('Cost center tag')
 param costCenter string 
 
-// Add param for Key Vault
+@description('Key Vvault secret URI')
+param keyVaultSecretUri string 
 
 // App Service Plan 
 resource appServicePlan 'Microsoft.Web/serverfarms@2024-11-01' = {
@@ -52,6 +53,14 @@ resource webApp 'Microsoft.Web/sites@2024-11-01' = {
   properties: {
     serverFarmId: appServicePlan.id
     httpsOnly: httpsOnly
+    siteConfig: {
+      appSettings: [
+        {
+          name: 'MY_SECRET'
+          value: keyVaultSecretUri
+        }
+      ]
+    }
   }
   tags: {
     owner: owner 
