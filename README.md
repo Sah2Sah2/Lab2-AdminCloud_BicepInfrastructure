@@ -113,7 +113,13 @@ az deployment group show \
 
 ## Screenshots
 - Screenshot of my RG showing all resources for dev, test, and prod 
+![Dev Resources]()
+![Test Resources]()
+![Prod Resources]()
+
 - Schrenshot of deployment output in CLI showing Web App URLs 
+![CLI Output]()
+
 - Web App URLs for references: 
     - Dev: 
     - Test: 
