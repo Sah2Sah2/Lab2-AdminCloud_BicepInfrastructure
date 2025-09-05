@@ -57,6 +57,11 @@ param costCenter string
 // Https only
 param httpsOnly bool
 
+// Key Vault (VG)
+@secure()
+@description('Secret value for Key Vault')
+param secretValueFromCLI string 
+
 // -------AUTOSCALE PARAMETERS---------
 
 @description('Minimum instance count for autoscale')
@@ -144,7 +149,7 @@ module KeyVault './modules/keyvault.bicep' = {
     environment: environment
     costCenter: costCenter
     secretName: 'MySecret'
-    secretValue: secretValueFromParamFile
+    secretValue: secretValueFromCLI
   }
 }
 
