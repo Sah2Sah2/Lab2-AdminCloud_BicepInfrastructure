@@ -27,10 +27,9 @@ param environment string
 param costCenter string
 
 resource autoscale 'Microsoft.Insights/autoscalesettings@2022-10-01' = {
-  name: autuscaleName
+  name: autoscaleName
   location: resourceGroup().location
   properties: {
-    name: autuscaleName
     targetResourceUri: targetResourceId
     enabled: true
     profiles: [
