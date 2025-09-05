@@ -17,3 +17,17 @@ param enviroment string
 
 @description('Cost center tag')
 param costCenter string 
+
+
+resource rg 'Microsoft.Resources/resourceGroups@2025-04-01' = {
+  name: rgName
+  location: location 
+  tags: {
+    owner: owner 
+    environment: enviroment
+    costCenter: costCenter
+  }
+}
+
+// Outputs
+output rgId string = rg.id
