@@ -11,8 +11,8 @@ param location string
 @description('Owner tag')
 param owner string 
 
-@description('Enviroment tag')
-param enviroment string
+@description('Environment tag')
+param environment string
 
 @description('Cost center tag')
 param costCenter string 
@@ -27,7 +27,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2025-01-01' = {
   properties: {}
   tags: {
     owner: owner
-    environment: enviroment
+    environment: environment
     costCenter: costCenter
   }
 }

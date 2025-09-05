@@ -1,3 +1,4 @@
 // =============== rg.bicep =============
+// OBS: do not call in Main 
 
-targetScope = 'subscription'
+targetScope = 'subscription' // Subscription scoped deployment 
