@@ -9,13 +9,13 @@ This project creates an Azure infrastructure with Bicep across three environment
 It includes Resource Groups, Storage Accounts, App Service Plans with Web Apps, a Key Vault for secrets, and Autoscale for production.  
 All resources are modularized, parameterized, use environment-specific names, have tags (`owner`, `environment`, `costCenter`), and provide outputs for Web App URLs, App Service Plan IDs, Storage Account IDs, and Key Vault secrets, fulfilling all functional and advanced requirements of the school assignment.
 
-The infrasture includes: 
+The infrastructure includes: 
 - Resource Group (given from the school)
 - Storage Account per environment (dev, test, prod)
 - App Service Plan + Web App per environment 
 - Key Vault for storing secrets 
 - Autoscale settings (only for prod)
-- Proper tagging (owner`, `environemnt`, `costCenter`)
+- Proper tagging (owner`, `environment`, `costCenter`)
 - Parameters to have a modular and reusable deployment
 
 
@@ -95,7 +95,7 @@ az deployment group create \
 ## Notes 
 - `secretValueFromCLI` to have a secret Key Value passed securely at deployment and not exposed in a parameter file
 - All resources are tagged with `owner`, `environment`, and `costCenter`
-- Autoscale is enable only in production
+- Autoscale is enabled only in production
 - Resources names include the environment (`dev`, `test`, `prod`) and use `uniqueString()` where required
 
 ## Outputs 
