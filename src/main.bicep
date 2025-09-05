@@ -107,6 +107,20 @@ module StorageAccount './modules/storage.bicep' = {
   }
 }
 
+// Key vault (VG)
+module KeyVault './modules/keyvault.bicep' = {
+  name: 'kv-${environment}'
+  params: {
+    keyVaultName: keyVaultName
+    location: location
+    owner: owner 
+    environment: environment
+    costCenter: costCenter
+    secretName: 'MySecret'
+    secretValue: secretValueFromCLI
+  }
+}
+
 // App Service 
 module AppService './modules/appservice.bicep' = {
   name: 'app-${environment}'
@@ -139,27 +153,12 @@ module Autoscale './modules/autoscale.bicep' = if (environment == 'prod') {
   }
 }
 
-// Key vault (VG)
-module KeyVault './modules/keyvault.bicep' = {
-  name: 'kv-${environment}'
-  params: {
-    keyVaultName: keyVaultName
-    location: location
-    owner: owner 
-    environment: environment
-    costCenter: costCenter
-    secretName: 'MySecret'
-    secretValue: secretValueFromCLI
-  }
-}
-
-// To do: add Key Vault module + a param in web app module 
-
-
 //--------------------OUTPUTS-----------------
 
 output webAppUrl string = AppService.outputs.webAppUrl
 output appServicePlanId string = AppService.outputs.appServicePlanId
 
 output storageAccountId string = StorageAccount.outputs.storageAccountId
+
+output keyVaultSecretUri string = KeyVault.outputs.secretUri
 
