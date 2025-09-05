@@ -26,4 +26,27 @@ param environment string
 @description('Cost center tag')
 param costCenter string
 
-
+resource autoscale 'Microsoft.Insights/autoscalesettings@2022-10-01' = {
+  name: autuscaleName
+  location: resourceGroup().location
+  properties: {
+    name: autuscaleName
+    targetResourceUri: targetResourceId
+    enabled: true
+    profiles: [
+      {
+        name: 'DefaultProfile'
+        capacity: {
+          minimum: string(minInstanceCount)
+          maximum: string(maxInstanceCount)
+          default: string(defaultInstanceCount)
+        }
+      }
+    ]
+  }
+  tags: {
+    owner: owner
+    environment: environment
+    costCenter: costCenter
+  }
+}
