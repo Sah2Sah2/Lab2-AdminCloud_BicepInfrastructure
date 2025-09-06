@@ -14,6 +14,9 @@ param location string
 @description('SKU for App Service Plan')
 param sku string 
 
+@description('SKU capacity for the App Service Plan')
+param skuCapacity int
+
 @description('HTTPS Only')
 param httpsOnly bool
 
@@ -37,7 +40,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2024-11-01' = {
     name: sku
     tier: sku == 'B1' ? 'Basic' : 'Standard'
     size: sku
-    capacity: 1
+    capacity: skuCapacity
   }
   tags: {
     owner: owner 

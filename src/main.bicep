@@ -27,6 +27,10 @@ param namePrefix string
 @allowed(['B1', 'S1'])
 param appServicePlanSku string = 'B1'
 
+// SKU (prod scale higher)
+@description('App Service Plan instance capacity')
+param skuCapacity int = environment == 'prod' ? 2 : 1 
+
 // Storage SKU
 @description('Storage Account SKU')
 @allowed([
@@ -135,6 +139,7 @@ module AppService './modules/appservice.bicep' = {
     appServicePlanName: appServicePlanResourceName 
     location: location 
     sku: appServicePlanSku
+    skuCapacity: skuCapacity
     httpsOnly: httpsOnly
     owner: owner
     environment: environment
