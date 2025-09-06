@@ -50,6 +50,9 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2024-11-01' = {
 resource webApp 'Microsoft.Web/sites@2024-11-01' = {
   name: appServiceName
   location: location
+  identity: {
+    type: 'SystemAssigned'
+  }
   properties: {
     serverFarmId: appServicePlan.id
     httpsOnly: httpsOnly
@@ -57,7 +60,8 @@ resource webApp 'Microsoft.Web/sites@2024-11-01' = {
       appSettings: [
         {
           name: 'MY_SECRET'
-          value: keyVaultSecretUri
+          value: '@Microsoft.KeyVault(SecretUri=${keyVaultSecretUri})'
+          //keyVaultSecretUri
         }
       ]
     }
@@ -74,3 +78,4 @@ resource webApp 'Microsoft.Web/sites@2024-11-01' = {
 output appServicePlanId string = appServicePlan.id
 output webAppName string = webApp.name
 output webAppUrl string = 'https://${webApp.name}.azurewebsites.net'
+output webAppPrincipalId string = webApp.identity.principalId
