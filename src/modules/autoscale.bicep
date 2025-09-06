@@ -40,7 +40,44 @@ resource autoscale 'Microsoft.Insights/autoscalesettings@2022-10-01' = {
           maximum: string(maxInstanceCount)
           default: string(defaultInstanceCount)
         }
-        rules: []
+        rules: [
+          {
+            metricTrigger: {
+              metricName: 'CpuPercentage'
+              metricResourceUri: targetResourceId
+              timeGrain: 'PT1M'
+              statistic: 'Average'
+              timeWindow: 'PT5M'
+              timeAggregation: 'Average'
+              operator: 'GreaterThan'
+              threshold: 70
+            }
+            scaleAction: {
+              direction: 'Increase'
+              type: 'ChangeCount'
+              value: '1'
+              cooldown: 'PT5M'
+            }
+          }
+          {
+            metricTrigger: {
+              metricName: 'CpuPercentage'
+              metricResourceUri: targetResourceId
+              timeGrain: 'PT1M'
+              statistic: 'Average'
+              timeWindow: 'PT5M'
+              timeAggregation: 'Average'
+              operator: 'LessThan'
+              threshold: 30
+            }
+            scaleAction: {
+              direction: 'Decrease'
+              type: 'ChangeCount'
+              value: '1'
+              cooldown: 'PT5M'
+            }
+          }
+        ]
       }
     ]
   }
