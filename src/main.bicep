@@ -8,6 +8,20 @@ metadata description = 'Main Bicep file for deploying Azure infrastructure'
 @description('Name of the RG')
 param rgName string*/
 
+// Environments 
+@description('Deployment environment')
+@allowed(['dev','test','prod'])
+param environment string = 'dev'
+
+// Tier 
+@description('App Service Plan SKU')
+@allowed(['B1', 'S1'])
+param appServicePlanSku string = 'B1'
+
+// SKU (prod scale higher)
+@description('App Service Plan instance capacity')
+param skuCapacity int = environment == 'prod' ? 2 : 1 
+
 // Location for the RG
 @description('Azure region for all the resources')
 param location string 
@@ -22,15 +36,6 @@ param storagePrefix string
 @description('Prefix for naming resources')
 param namePrefix string 
 
-// Tier 
-@description('App Service Plan SKU')
-@allowed(['B1', 'S1'])
-param appServicePlanSku string = 'B1'
-
-// SKU (prod scale higher)
-@description('App Service Plan instance capacity')
-param skuCapacity int = environment == 'prod' ? 2 : 1 
-
 // Storage SKU
 @description('Storage Account SKU')
 @allowed([
@@ -44,11 +49,6 @@ param skuName string = 'Standard_LRS'
   'StorageV2'
 ])
 param storageKind string = 'StorageV2'
-
-// Environments 
-@description('Deployment environment')
-@allowed(['dev','test','prod'])
-param environment string = 'dev'
 
 // Owner
 @description('Owner')
@@ -155,8 +155,8 @@ resource keyVaultExisting 'Microsoft.KeyVault/vaults@2024-11-01' existing = {
 }
 
 resource kvAccess 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: guid(keyVaultExisting.id, 'KeyVaultAccess') 
-  scope: keyVaultExisting
+  name: guid(keyVaultExisting.id, AppService.outputs.webAppPrincipalId, 'KeyVaultAccess') 
+  scope: keyVaultExisting.id
   properties: {
     roleDefinitionId: subscriptionResourceId(
       'Microsoft.Authorization/roleDefinitions',
