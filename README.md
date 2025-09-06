@@ -143,6 +143,14 @@ az deployment group show \
 - Screenshot of deployment output in CLI showing Web App URLs 
 [Download CLI Output PDF](docs/cli-output.pdf)
 
+- PDF demonstrating that the Key Vault deployed via Bicep is functional, including:
+  - Verification that the Key Vault exists
+  - Adding access policies
+  - Creating, retrieving, and listing secrets
+
+[Download Key Vault Demo PDF](docs/kv-demonstration.pdf)
+
+
 - Web App URLs for references: 
     - Dev: https://devapp-web-dev-c3un7w4qzrlpm.azurewebsites.net/
     - Test: https://testapp-web-test-c3un7w4qzrlpm.azurewebsites.net/
