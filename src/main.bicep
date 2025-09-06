@@ -171,7 +171,7 @@ resource assignKvRole 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
   location: location
   kind: 'AzurePowerShell'
   properties: {
-    azPowerShellVersion: '11'
+    azPowerShellVersion: '14.3'
     timeout: 'PT30M'
     retentionInterval: 'P1D'
     scriptContent: '''
