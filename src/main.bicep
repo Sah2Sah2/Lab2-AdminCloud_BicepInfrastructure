@@ -177,7 +177,7 @@ resource assignKvRole 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
     scriptContent: '''
     $kvId = '${KeyVault.outputs.keyVaultResourceId}'
     $principalId = '${AppService.outputs.webAppPrincipalId}'
-    New-AzRoleAssignment -ObjectId $principalId -RoleDefinitionName 'Key Vault Administrator' -Scope $kvId
+    New-AzRoleAssignment -ObjectId $principalId -RoleDefinitionName 'Key Vault Secret User' -Scope $kvId
     '''
 
     forceUpdateTag: uniqueString(resourceGroup().id)
