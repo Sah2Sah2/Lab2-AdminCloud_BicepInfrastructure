@@ -41,6 +41,7 @@ resource autoscale 'Microsoft.Insights/autoscalesettings@2022-10-01' = {
           default: string(defaultInstanceCount)
         }
         rules: [
+          // Scale out
           {
             metricTrigger: {
               metricName: 'CpuPercentage'
@@ -59,6 +60,8 @@ resource autoscale 'Microsoft.Insights/autoscalesettings@2022-10-01' = {
               cooldown: 'PT5M'
             }
           }
+
+          // Scale in
           {
             metricTrigger: {
               metricName: 'CpuPercentage'
