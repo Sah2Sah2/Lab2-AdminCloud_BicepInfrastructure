@@ -13,7 +13,7 @@ param location string
 param owner string 
 
 @description('Environment tag')
-param enviroment string 
+param environment string 
 
 @description('Cost center tag')
 param costCenter string 
@@ -24,7 +24,7 @@ resource rg 'Microsoft.Resources/resourceGroups@2025-04-01' = {
   location: location 
   tags: {
     owner: owner 
-    environment: enviroment
+    environment: environment
     costCenter: costCenter
   }
 }

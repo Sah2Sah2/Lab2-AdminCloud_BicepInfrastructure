@@ -14,7 +14,7 @@ param location string
 @description('SKU for App Service Plan')
 param sku string 
 
-@description('HTTPS inly')
+@description('HTTPS Only')
 param httpsOnly bool
 
 @description('Owner tag')
@@ -26,7 +26,7 @@ param environment string
 @description('Cost center tag')
 param costCenter string 
 
-@description('Key Vvault secret URI')
+@description('Key Vault secret URI')
 param keyVaultSecretUri string 
 
 // App Service Plan 
