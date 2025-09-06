@@ -36,8 +36,9 @@ The infrastructure includes:
 
 ## Repository structure 
 ```text
-/docs                            
-└── cli-outputs.pdf                # Contains a PDF with the CLI outputs 
+/docs   
+├── cli-outputs.pdf                # Contains a PDF with the CLI outputs                  
+└── kv-demonstration.pdf           # Containt a PDF with demonstration of kv 
 
 /src                              
 ├── main.bicep                     # Orchestrates all modules and deploys resources
@@ -147,7 +148,7 @@ az deployment group show \
   - Verification that the Key Vault exists
   - Adding access policies
   - Creating, retrieving, and listing secrets
-  
+
 [Download Key Vault Demo PDF](docs/kv-demonstration.pdf)
 
 
