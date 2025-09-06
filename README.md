@@ -147,7 +147,6 @@ az deployment group show \
   - Verification that the Key Vault exists
   - Adding access policies
   - Creating, retrieving, and listing secrets
-
 [Download Key Vault Demo PDF](docs/kv-demonstration.pdf)
 
 
