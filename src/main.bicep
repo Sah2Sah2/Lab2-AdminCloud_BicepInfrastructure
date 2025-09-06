@@ -148,6 +148,27 @@ module AppService './modules/appservice.bicep' = {
   }
 }
 
+//--------------------Role assignment for KV (VG)-----------------
+
+resource keyVaultExisting 'Microsoft.KeyVault/vaults@2024-11-01' existing = {
+  name: keyVaultName
+}
+
+resource kvAccess 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(keyVaultExisting.id, 'KeyVaultAccess') 
+  scope: keyVaultExisting
+  properties: {
+    roleDefinitionId: subscriptionResourceId(
+      'Microsoft.Authorization/roleDefinitions',
+      '00482a5a-887f-4fb3-b363-3b7fe8e74483' // Key Vault Administrator 
+    )
+    principalId: AppService.outputs.webAppPrincipalId
+    principalType: 'ServicePrincipal'
+  }
+}
+
+
+
 // Autoscale (VG)
 // Autoscale -> only for PROD, do not output its ID for dev/test to avoid null errors
 module Autoscale './modules/autoscale.bicep' = if (environment == 'prod') {
