@@ -39,27 +39,29 @@ The infrastructure includes:
 /docs                            
 └── cli-outputs.pdf                # Contains a PDF with the CLI outputs 
 
-/modules                           # Contains reusable Bicep modules
-│
-├── appservice.bicep               # App Service 
-├── autoscale.bicep                # Autoscale
-├── keyvault.bicep                 # Key Vault
-├── rg.bicep                       # Resource Group (RG)
-└── storage.bicep                  # Storage account 
- main.bicep                        # Orchestrates all modules and deploys resources
+/src                              
+├── main.bicep                     # Orchestrates all modules and deploys resources
+└── modules                        # Reusable Bicep modules
+    ├── appservice.bicep           # App Service 
+    ├── autoscale.bicep            # Autoscale
+    ├── keyvault.bicep             # Key Vault
+    ├── rg.bicep                   # Resource Group (RG)
+    └── storage.bicep              # Storage account 
 
-/parameters                         # Contains environment-specific parameter files
+/parameters                        # Contains environment-specific parameter files
 │
 ├── dev.json                       # Parameters for development
 ├── prod.json                      # Parameters for production
 └── test.json                      # Parameters for testing
 
 /.main.json                        # not commited
-
 /.gitignore                        # Git ignore rules               
-
 /README.md                         # Readme file (this file)
 ```
+**main.bicep**  
+This file orchestrates all modules inside `modules/` and deploys the complete infrastructure for the selected environment (dev, test, prod).  
+View the full file here: [src/main.bicep](src/main.bicep)
+
 ## Validate Bicep files
 Before deploying, you can build and lint the Bicep files to make sure everything is correct: 
 
@@ -139,10 +141,12 @@ az deployment group show \
 ![Alt text](https://github.com/user-attachments/assets/d8e7601b-57d5-4d1e-9b9c-9b5d2a3904a9)
 
 - Screenshot of deployment output in CLI showing Web App URLs 
-[View CLI Output PDF](docs/cli-output.pdf)
+[Download CLI Output PDF](docs/cli-outputs.pdf)
 
 - Web App URLs for references: 
     - Dev: https://devapp-web-dev-c3un7w4qzrlpm.azurewebsites.net/
     - Test: https://testapp-web-test-c3un7w4qzrlpm.azurewebsites.net/
     - Prod: https://prodapp-web-prod-c3un7w4qzrlpm.azurewebsites.net/
     - kv: https://prodapp-kv-prod.vault.azure.net/secrets/MySecret-c3un7w4qzrlpm/613cad43c5874a28966dc350934934e6
+
+> Note: Web Apps were deployed temporarily to demonstrate functionality. URLs are not permanent.
