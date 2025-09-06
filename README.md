@@ -141,7 +141,7 @@ az deployment group show \
 ![Alt text](https://github.com/user-attachments/assets/d8e7601b-57d5-4d1e-9b9c-9b5d2a3904a9)
 
 - Screenshot of deployment output in CLI showing Web App URLs 
-[Download CLI Output PDF](docs/cli-outputs.pdf)
+[Download CLI Output PDF](docs/cli-output.pdf)
 
 - Web App URLs for references: 
     - Dev: https://devapp-web-dev-c3un7w4qzrlpm.azurewebsites.net/
