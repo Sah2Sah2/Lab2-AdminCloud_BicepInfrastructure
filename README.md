@@ -4,7 +4,6 @@
 ![Azure CLI](https://img.shields.io/badge/Azure%20CLI-azure-blue)
 
 ## Project description 
-
 This project creates an Azure infrastructure with Bicep across three environments: dev, test, and prod.  
 It includes Resource Groups, Storage Accounts, App Service Plans with Web Apps, a Key Vault for secrets, and Autoscale for production.  
 All resources are modularized, parameterized, use environment-specific names, have tags (`owner`, `environment`, `costCenter`), and provide outputs for Web App URLs, App Service Plan IDs, Storage Account IDs, and Key Vault secrets, fulfilling all functional and advanced requirements of the school assignment.
@@ -36,8 +35,10 @@ The infrastructure includes:
 - Permissions to create resource groups and deploy resources
 
 ## Repository structure 
-
 ```text
+/docs                            
+└── cli-outputs.pdf                # Contains a PDF with the CLI outputs 
+
 /modules                           # Contains reusable Bicep modules
 │
 ├── appservice.bicep               # App Service 
@@ -60,7 +61,6 @@ The infrastructure includes:
 /README.md                         # Readme file (this file)
 ```
 ## Validate Bicep files
-
 Before deploying, you can build and lint the Bicep files to make sure everything is correct: 
 
 ```bash
@@ -79,7 +79,6 @@ az deployment group what-if \
 ```
 
 ## Deployment instructions 
-
 Deploy each environment separately (dev, test, prod) on your personal Resource Group 
 
 Dev
@@ -134,7 +133,6 @@ az deployment group show \
 ```
 
 ## Screenshots
-
 > Note: All resources were deployed temporarily to demonstrate functionality. Screenshots are provided as proof since resources were deleted immediately after deployment to avoid costs.
 
 - Screenshot of my RG showing all resources for dev, test, and prod 
