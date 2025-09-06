@@ -149,7 +149,7 @@ az deployment group show \
   - Adding access policies
   - Creating, retrieving, and listing secrets
 
-[Download Key Vault Demo PDF](docs/kv-demonstration.pdf)
+    [Download Key Vault Demo PDF](docs/kv-demonstration.pdf)
 
 
 - Web App URLs for references: 
