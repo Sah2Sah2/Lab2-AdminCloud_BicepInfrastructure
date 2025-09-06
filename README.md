@@ -138,14 +138,13 @@ az deployment group show \
 > Note: All resources were deployed temporarily to demonstrate functionality. Screenshots are provided as proof since resources were deleted immediately after deployment to avoid costs.
 
 - Screenshot of my RG showing all resources for dev, test, and prod 
-![Dev Resources]()
-![Test Resources]()
-![Prod Resources]()
+![Alt text](https://github.com/user-attachments/assets/d8e7601b-57d5-4d1e-9b9c-9b5d2a3904a9)
 
 - Screenshot of deployment output in CLI showing Web App URLs 
 ![CLI Output]()
 
 - Web App URLs for references: 
-    - Dev: 
-    - Test: 
-    - Prod: 
+    - Dev: https://devapp-web-dev-c3un7w4qzrlpm.azurewebsites.net/
+    - Test: https://testapp-web-test-c3un7w4qzrlpm.azurewebsites.net/
+    - Prod: https://prodapp-web-prod-c3un7w4qzrlpm.azurewebsites.net/
+    - kv: https://prodapp-kv-prod.vault.azure.net/secrets/MySecret-c3un7w4qzrlpm/613cad43c5874a28966dc350934934e6
