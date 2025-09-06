@@ -148,27 +148,6 @@ module AppService './modules/appservice.bicep' = {
   }
 }
 
-//--------------------Role assignment for KV (VG)-----------------
-
-resource keyVaultExisting 'Microsoft.KeyVault/vaults@2024-11-01' existing = {
-  name: keyVaultName
-}
-
-resource kvAccess 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: guid(keyVaultExisting.id, AppService.outputs.webAppPrincipalId, 'KeyVaultAccess') 
-  scope: keyVaultExisting.id
-  properties: {
-    roleDefinitionId: subscriptionResourceId(
-      'Microsoft.Authorization/roleDefinitions',
-      '00482a5a-887f-4fb3-b363-3b7fe8e74483' // Key Vault Administrator 
-    )
-    principalId: AppService.outputs.webAppPrincipalId
-    principalType: 'ServicePrincipal'
-  }
-}
-
-
-
 // Autoscale (VG)
 // Autoscale -> only for PROD, do not output its ID for dev/test to avoid null errors
 module Autoscale './modules/autoscale.bicep' = if (environment == 'prod') {
@@ -183,6 +162,30 @@ module Autoscale './modules/autoscale.bicep' = if (environment == 'prod') {
     environment: environment
     costCenter: costCenter
   }
+}
+
+//--------------------Role assignment for KV (VG)-----------------
+
+resource assignKvRole 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
+  name: 'assignKvRoleScript'
+  location: location
+  kind: 'AzurePowerShell'
+  properties: {
+    azPowerShellVersion: '11'
+    timeout: 'PT30M'
+    retentionInterval: 'P1D'
+    scriptContent: '''
+    $kvId = '${KeyVault.outputs.keyVaultResourceId}'
+    $principalId = '${AppService.outputs.webAppPrincipalId}'
+    New-AzRoleAssignment -ObjectId $principalId -RoleDefinitionName 'Key Vault Adminisrator' -Scope $kvId
+    '''
+
+    forceUpdateTag: uniqueString(resourceGroup().id)
+  }
+  dependsOn: [
+    AppService
+    KeyVault
+  ]
 }
 
 //--------------------OUTPUTS-----------------
